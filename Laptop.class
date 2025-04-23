@@ -1,1 +1,54 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.util.Objects;
+
+public class Laptop {
+   private String brand;
+   private int ram;
+   private int storage;
+   private String os;
+   private String color;
+
+   public Laptop(String var1, int var2, int var3, String var4, String var5) {
+      this.brand = var1;
+      this.ram = var2;
+      this.storage = var3;
+      this.os = var4;
+      this.color = var5;
+   }
+
+   public int getRam() {
+      return this.ram;
+   }
+
+   public int getStorage() {
+      return this.storage;
+   }
+
+   public String getOs() {
+      return this.os;
+   }
+
+   public String getColor() {
+      return this.color;
+   }
+
+   public String toString() {
+      return "Laptop{brand='" + this.brand + "', RAM=" + this.ram + " GB, Storage=" + this.storage + " GB, OS='" + this.os + "', Color='" + this.color + "'}";
+   }
+
+   public boolean equals(Object var1) {
+      if (this == var1) {
+         return true;
+      } else if (!(var1 instanceof Laptop)) {
+         return false;
+      } else {
+         Laptop var2 = (Laptop)var1;
+         return this.ram == var2.ram && this.storage == var2.storage && this.brand.equals(var2.brand) && this.os.equals(var2.os) && this.color.equals(var2.color);
+      }
+   }
+
+   public int hashCode() {
+      return Objects.hash(new Object[]{this.brand, this.ram, this.storage, this.os, this.color});
+   }
+}
 
