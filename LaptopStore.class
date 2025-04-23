@@ -1,1 +1,81 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+public class LaptopStore {
+   public LaptopStore() {
+   }
+
+   public static void main(String[] var0) {
+      HashSet var1 = new HashSet(List.of(new Laptop("Lenovo", 8, 512, "Windows", "Black"), new Laptop("HP", 16, 1024, "Windows", "Silver"), new Laptop("Apple", 8, 256, "macOS", "Gray"), new Laptop("Asus", 16, 512, "Linux", "Black"), new Laptop("Dell", 32, 1024, "Windows", "White")));
+      Scanner var2 = new Scanner(System.in);
+      HashMap var3 = new HashMap();
+
+      for(boolean var4 = true; var4; var4 = var2.nextLine().equalsIgnoreCase("y")) {
+         System.out.println("Выберите критерий фильтрации:");
+         System.out.println("1 - ОЗУ");
+         System.out.println("2 - Объем ЖД");
+         System.out.println("3 - Операционная система");
+         System.out.println("4 - Цвет");
+         switch (var2.nextLine()) {
+            case "1":
+               System.out.print("Минимальный объем ОЗУ (в ГБ): ");
+               var3.put("ram", var2.nextLine());
+               break;
+            case "2":
+               System.out.print("Минимальный объем ЖД (в ГБ): ");
+               var3.put("storage", var2.nextLine());
+               break;
+            case "3":
+               System.out.print("Операционная система: ");
+               var3.put("os", var2.nextLine().toLowerCase());
+               break;
+            case "4":
+               System.out.print("Цвет: ");
+               var3.put("color", var2.nextLine().toLowerCase());
+               break;
+            default:
+               System.out.println("Неверный выбор");
+         }
+
+         System.out.print("Хотите добавить еще критерий? (y/n): ");
+      }
+
+      filterLaptops(var1, var3);
+   }
+
+   private static void filterLaptops(Set<Laptop> var0, Map<String, String> var1) {
+      Iterator var2 = var0.iterator();
+
+      while(var2.hasNext()) {
+         Laptop var3 = (Laptop)var2.next();
+         boolean var4 = true;
+         if (var1.containsKey("ram") && var3.getRam() < Integer.parseInt((String)var1.get("ram"))) {
+            var4 = false;
+         }
+
+         if (var1.containsKey("storage") && var3.getStorage() < Integer.parseInt((String)var1.get("storage"))) {
+            var4 = false;
+         }
+
+         if (var1.containsKey("os") && !var3.getOs().equalsIgnoreCase((String)var1.get("os"))) {
+            var4 = false;
+         }
+
+         if (var1.containsKey("color") && !var3.getColor().equalsIgnoreCase((String)var1.get("color"))) {
+            var4 = false;
+         }
+
+         if (var4) {
+            System.out.println(var3);
+         }
+      }
+
+   }
+}
 
